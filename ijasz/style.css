@@ -1,0 +1,30 @@
+body{
+    background-color: purple;
+
+
+
+    
+}
+
+#main{
+    background-color: green;
+    width: 900px;
+    margin: auto;
+
+}
+
+h1{
+    background-color: yellow;
+    text-align: center;
+}
+
+#canvas-parent{
+    background-color: blue;
+}
+
+p{
+    background-color: cadetblue;
+    width: 50;
+    margin: auto;
+}
+
