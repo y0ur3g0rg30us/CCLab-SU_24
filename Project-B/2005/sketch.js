@@ -36,12 +36,12 @@ function setup() {
 function draw() {
   background('#3EB489');
 
-  // Draw the floor
+  // floor
   noStroke();
   fill('#e0b382');
   rect(0, width / 2 - 100, height * 2, 200);
 
-  // Draw the statue pedestal
+  //  statue pedestal
   fill('#9a9a9a');
   rect(width / 2 - 75, height - 175, 150, 120);
   fill('#696969');
