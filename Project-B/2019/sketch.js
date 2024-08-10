@@ -5,6 +5,12 @@ let img4;
 let img5;
 let img6;
 let img7;
+let m1;
+let m2;
+let m3;
+let m4;
+let m5;
+let m6;
 
 let scalableImages = []; 
 
@@ -16,6 +22,11 @@ function preload() {
   img5=loadImage('assests/2019.4.jpg');
   img6=loadImage('assests/2019.5.jpg');
   img7=loadImage('assests/2019.6.jpg');
+  m1= loadSound('assests/tFair.mp3');
+  m2=loadSound('assests/tHoco.mp3');
+  m3= loadSound('assests/i.mp3');
+  m4= loadSound('assests/flute.mp3')
+  m5= loadSound('assests/al2.mp3')
 
 }
 
@@ -23,12 +34,12 @@ function setup() {
   let cnv = createCanvas(windowWidth, windowHeight);
   cnv.parent("canvas-parent");
   
-  scalableImages.push(new ScalableImage(img1, width / 2 - 45 - 485, height - 120 - 350, 90, 70));
-  scalableImages.push(new ScalableImage(img2, width / 2 - 45 - 485, height - 180 - 425, 90, 120));
-  scalableImages.push(new ScalableImage(img3, width / 2 - 45 - 485, height - 100 - 280, 90, 120));
-  scalableImages.push(new ScalableImage(img5, width / 2 - 45 + 350, height - 350 - 290, 120, 120));
-  scalableImages.push(new ScalableImage(img7, width / 2 - 45 + 350, height - 150 - 180, 120, 100));
-  scalableImages.push(new ScalableImage(img6, width / 2 - 45 +350, height - 180 - 300, 200, 120)); 
+  scalableImages.push(new ScalableImage(img1, width / 2 - 45 - 485, height - 120 - 350, 90, 70, m3));
+  scalableImages.push(new ScalableImage(img2, width / 2 - 45 - 485, height - 180 - 425, 90, 120, m4));
+  scalableImages.push(new ScalableImage(img3, width / 2 - 45 - 485, height - 100 - 280, 90, 120, m1));
+  scalableImages.push(new ScalableImage(img5, width / 2 - 45 + 350, height - 350 - 290, 120, 120, m5));
+  scalableImages.push(new ScalableImage(img7, width / 2 - 45 + 350, height - 150 - 180, 120, 100, m2));
+  scalableImages.push(new ScalableImage(img6, width / 2 - 45 +350, height - 180 - 300, 200, 120, )); 
 }
 
 function draw() {
@@ -63,7 +74,7 @@ function mousePressed() {
 }
 
 class ScalableImage {
-  constructor(img, x, y, w, h) {
+  constructor(img, x, y, w, h, audio) {
     this.img = img;
     this.originalX = x;
     this.originalY = y;
@@ -76,6 +87,8 @@ class ScalableImage {
     this.scaled = false;
     this.scaleFactor = 4;
     this.scalingSpeed = 10; 
+    this.audio= audio
+
   }
 
   update() {
@@ -105,6 +118,9 @@ class ScalableImage {
     let d = dist(mx, my, this.x + this.w / 2, this.y + this.h / 2);
     if (d < this.w / 2) {
       this.scaled = !this.scaled;
+      if(this.scaled){
+        this.audio=this.audio.play();
+      }
     }
   }
 }

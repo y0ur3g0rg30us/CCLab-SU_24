@@ -1,26 +1,45 @@
-let img1, img2, img3, img4;
-let scalableImages = []; // Array to store instances of ScalableImage
+let img1;
+let img2;
+let img3;
+let img4;
+let img5;
+let img6;
+let img7;
+let m1;
+let m2;
+let m3;
+let m4;
+let m5;
+let m6;
+
+let scalableImages = []; 
 
 function preload() {
   img1 = loadImage('assests/2023.1.jpg');
   img2 = loadImage('assests/2023.2.png');
   img3 = loadImage('assests/2023.3.jpg');
   img4 = loadImage('assests/traveling.png');
-  img5= loadImage('assests/2023.4.png')
-  img6= loadImage('assests/2023.5.jpg')
-  img7=loadImage('assests/2023.6.jpg')
+  img5= loadImage('assests/2023.4.png');
+  img6= loadImage('assests/2023.5.jpg');
+  img7=loadImage('assests/2023.6.jpg');
+  m1= loadSound('assests/a.mp3');
+  m2= loadSound('assests/al.1.mp3');
+  m3= loadSound('assests/club.mp3');
+  m4=loadSound('assests/manager.mp3');
+  m5=loadSound('assests/plane.mp3');
+  m6=loadSound('assests/Z.mp3');
 }
 
 function setup() {
   let cnv = createCanvas(windowWidth, windowHeight);
   cnv.parent("canvas-parent");
 
-  scalableImages.push(new ScalableImage(img1, width / 2 - 45 - 485, height - 120 - 350, 90, 70));
-  scalableImages.push(new ScalableImage(img2, width / 2 - 45 - 485, height - 180 - 425, 90, 120));
-  scalableImages.push(new ScalableImage(img3, width / 2 - 45 - 485, height - 100 - 280, 90, 120));
-  scalableImages.push(new ScalableImage(img5, width / 2 - 45 + 350, height - 350 - 290, 120, 120));
-  scalableImages.push(new ScalableImage(img7, width / 2 - 45 + 350, height - 150 - 180, 120, 100));
-  scalableImages.push(new ScalableImage(img6, width / 2 - 45 +350, height - 180 - 300, 200, 120)); 
+  scalableImages.push(new ScalableImage(img1, width / 2 - 45 - 485, height - 120 - 350, 90, 70,m2));
+  scalableImages.push(new ScalableImage(img2, width / 2 - 45 - 485, height - 180 - 425, 90, 120,m4));
+  scalableImages.push(new ScalableImage(img3, width / 2 - 45 - 485, height - 100 - 280, 90, 120,m5));
+  scalableImages.push(new ScalableImage(img5, width / 2 - 45 + 350, height - 350 - 290, 120, 120, m6));
+  scalableImages.push(new ScalableImage(img7, width / 2 - 45 + 350, height - 150 - 180, 120, 100,m1));
+  scalableImages.push(new ScalableImage(img6, width / 2 - 45 +350, height - 180 - 300, 200, 120, m3)); 
   
 
 }
@@ -28,12 +47,12 @@ function setup() {
 function draw() {
   background('#550000');
 
-  // Draw the floor
+  // floor
   noStroke();
   fill('#e0b382');
   rect(0, width / 2 - 100, height * 2, 200);
 
-  // Draw the statue pedestal
+  //  statue pedestal
   fill('#9a9a9a');
   rect(width / 2 - 75, height - 175, 150, 120);
   fill('#696969');
@@ -57,7 +76,7 @@ function mousePressed() {
 }
 
 class ScalableImage {
-  constructor(img, x, y, w, h) {
+  constructor(img, x, y, w, h, audio) {
     this.img = img;
     this.originalX = x;
     this.originalY = y;
@@ -99,6 +118,9 @@ class ScalableImage {
     let d = dist(mx, my, this.x + this.w / 2, this.y + this.h / 2);
     if (d < this.w / 2) {
       this.scaled = !this.scaled;
+      if(this.scaled){
+        this.audio=this.audio.play();
+      }
     }
   }
 }

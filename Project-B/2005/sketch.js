@@ -19,18 +19,22 @@ function preload() {
   img4 = loadImage('assests/mommy.png');
   img5=loadImage('assests/2003.4.jpg');
   img6=loadImage('assests/2005.5.jpg');
- 
+  m1=loadSound('assests/mom1.mp3');
+  m2 = loadSound('assests/mom2.mp3');
+  m3=loadSound('assests/mom3.mp3');
+  m4= loadSound('assests/mom4.mp3');
+  m5=loadSound('assests/mom5.mp3');
 }
 
 function setup() {
   let cnv = createCanvas(windowWidth, windowHeight);
   cnv.parent("canvas-parent");
 
-  scalableImages.push(new ScalableImage(img1, width / 2 - 45 - 485, height - 120 - 350, 90, 70));
-  scalableImages.push(new ScalableImage(img2, width / 2 - 45 - 485, height - 180 - 425, 130, 90));
-  scalableImages.push(new ScalableImage(img3, width / 2 - 45 - 485, height - 100 - 280, 90, 120));
-  scalableImages.push(new ScalableImage(img5, width / 2 - 45 + 350, height - 350 - 290, 120, 120));
-  scalableImages.push(new ScalableImage(img6, width / 2 - 45 +350, height - 180 - 300, 200, 120 )); 
+  scalableImages.push(new ScalableImage(img1, width / 2 - 45 - 485, height - 120 - 350, 90, 70, m1));
+  scalableImages.push(new ScalableImage(img2, width / 2 - 45 - 485, height - 180 - 425, 130, 90, m5));
+  scalableImages.push(new ScalableImage(img3, width / 2 - 45 - 485, height - 100 - 280, 90, 120, m2));
+  scalableImages.push(new ScalableImage(img5, width / 2 - 45 + 350, height - 350 - 290, 120, 120, m3));
+  scalableImages.push(new ScalableImage(img6, width / 2 - 45 +350, height - 180 - 300, 200, 120, m4 )); 
 }
 
 function draw() {
@@ -64,7 +68,7 @@ function mousePressed() {
 }
 
 class ScalableImage {
-  constructor(img, x, y, w, h,) {
+  constructor(img, x, y, w, h, audio) {
     this.img = img;
     this.originalX = x;
     this.originalY = y;
@@ -108,7 +112,7 @@ class ScalableImage {
     if (d < this.w / 2) {
       this.scaled = !this.scaled;
       if(this.scaled){
-        this.audio.play();
+        this.audio=this.audio.play();
       }
     }
   }
