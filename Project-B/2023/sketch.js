@@ -89,6 +89,7 @@ class ScalableImage {
     this.scaled = false;
     this.scaleFactor = 4;
     this.scalingSpeed = 10; 
+    this.audio = audio
   }
 
   update() {
@@ -119,8 +120,7 @@ class ScalableImage {
     if (d < this.w / 2) {
       this.scaled = !this.scaled;
       if(this.scaled){
-        this.audio=this.audio.play();
-      }
+        if(mouseIsPressed){if (this.audio.isPlaying == false){ this.audio.play() }}}
     }
   }
 }
